@@ -1,0 +1,687 @@
+Python
+
+- commentaries:
+	- line comment: #
+	- multi-line: There no oficial way to do this, you can simulates it by using multi-line string instead:
+	def myFunc():
+		"""
+		some code here
+		"""
+		return 0
+
+- Expression: values and operators. They always evaluates down to a single value. E.g.: 
+
+2 + 2 
+4
+
+'Hello' + 'World'
+'HelloWorld'
+
+'yada ' * 3
+'yada yada yada'
+
+- Statement: doesn't evaluates into single a value; E.g.:
+
+spam = 2 + 2
+
+- Booleans must be typed with the first capital letters: True, False 
+They can be compared w/ the following operators: &, |, and, or, not, ==, !=, >=, <=, <, > 
+...doesnt work: <>, !
+
+- Block: blocks of code in Python are made out of indentation. A block beggings when the indentation increases, and ends when it returns to the previous level.
+
+if a == 10 :
+    print(True)
+elif a == 1 :
+    print(True)
+else : 
+    print(False)
+print('out of the block')
+
+tip: blocks starts after a collon (:)
+Attention: the ELSE IF is " elif " in Python
+
+
+- Truthy and Falsey values:
+
+if True 
+a = 10
+if a 
+b = 'hello'
+if b
+...
+
+if False
+c = 0
+if c
+d = ''
+if d
+...
+
+False, 0, empty String are falsey: 
+bool(0)
+False
+
+True, any number (even negative), any String are truthy:
+bool(1)
+True
+
+- While example:
+# it will loop while it is True
+a = 0
+while a < 5 :
+    print('spam')
+    a = a + 1
+    
+keywords:
+	break : break out of the loop
+	continue : goes back to the top of the loop
+	
+- for example:
+for i in range(5) :
+    print('hello ' + str(i))
+    
+# range(start, end, step)  
+	the range starts in 0 if single number is filled
+	can start with any other number than 0 by informing start and end
+	can increase or decrease in any choosen pace
+	the step can be negative to allow decreasing, 
+		but notice the start value must be higher than end in this case 
+
+- Built-in Functions: 
+	are functions within Python standard modules
+	but you can import any function w/ 'import'
+
+# calling a random number	
+import ramdom
+random.randint(0, 9)
+8
+# closing a probram
+import sys
+sys.exit()
+
+*also it is possible to install third-party modules with 'pip tool'
+# apt-get install pip3
+$ pip3 install new-module
+...
+import new-module
+...
+
+- Functions:
+	are custom functions you define within the code
+	
+def new-func(arg) :
+	print('do sth ' + arg)
+	return 0
+	
+new-func('here')
+0
+
+***every function has a return value even if this function is not spected to return anything, it still returns 'None'
+	for instance:
+		spam = print()
+		spam == None
+		True
+...
+*keywords as arguments: you can use some keywords to change the behavior of functions.
+	for instance, print always add a new line at the end, you could change this by using the 'end' keyword as arg:
+		print('Hello ', end='')
+		print('World')
+		Hello World
+
+	Another example, the print adds a space as separator with you pass multiple args:
+		print('dog', 'cat', 'mouse')
+		dog cat mouse
+		print('dog', 'cat', 'mouse', sep='-')
+		dog-cat-mouse
+...
+
+- Global and Local scopes: 
+	In Python a local variable and global variable w/ same name is distinguishable for the scope of its assignment:
+	
+def spam() :
+	eggs = 99   
+	print(eggs) # eggs here is the local assigned above
+	
+eggs = 42
+spam()
+print(eggs) # will print the global
+...
+
+*however you can use the 'global' statement to assigne a global variable insite a function scope:
+def spam() :
+	global eggs
+	eggs = 99   
+	print(eggs) # eggs here is the local assigned above
+
+- try / except : to treat error in runtime will avoid the program to crash
+
+try:
+	returnt sth
+except SpecificErrorMessage :
+	do sth
+except : 
+	do sth
+	
+- Lists: 
+	in Python a List can contain multiple values of multiple types, even other lists.
+	simple list: >>> ['cat','rat','bat']			- [0] - 'cat'
+	composed list: >>> ['cat',10,True]				- [1] - 1
+	list of lists: >>> [['cat','rat'],[10,20],[True,False]]	- [0][1] - 'rat'
+	all mixed: >>> [['cat','rat'], 11, [10,20], True, None]	- [1] - 11
+	many levels as need: >>> [['cat','rat',[1,2]]]		- [0][2][1] - 2
+	
+	*index start in 0
+	negative numbers can be used to look backwards: 
+		>>> ['cat','rat','bat']	- [-1] - 'bat'
+	*another way get values are using the 'slice' method, in which you chose slices of the list separated by a colon:
+		*goes from X and goes upto, but do not include, Y:
+		 >>> ['cat','rat','bat','fat']	- [0:2] - 'cat' 'bat'  
+		 	...or [:2] for when you start in 0.
+		 
+	**index evaluates to single values, while Slice evaluates to a shorter list
+	*the same logic follows for changing values to lists 
+	
+	*To delete a value from the list: 
+		>>> spam = ['cat','rat','elephant','bat']
+		>>> del spam[2]	
+		...results in ['cat','rat','bat']. The 'del' command will reorganize the list.
+		
+	*use 'list()' to convert a value to a list:
+		>>> spam = list('hello') - ['h','e','l','l','o']
+		>>> spam[:2] = list('hi') - ['h', 'i', 'l', 'l', 'o']
+		
+	*use 'in' to find a value within a list:
+		>>> 'cat' in ['cat','rat','fat'] - True 
+		>>> 'cat' not in ['cat','rat','fat'] - False
+
+	*applying a range in list:
+		>>> spam = list(range(5))
+		>>> spam - [0,1,2,3,4]
+		>>> spam = list(range(0,100,2)) # create a list with even number from 0 to 98
+	*for through a lengh of a list:
+		>>> for i in range(len(spam)) :
+		...
+		
+- Multiple assignement: to break a list into variables:
+	>>> cat = ['fat', 'orange', 'loud']
+	>>> size, color, other = cat #will do the same as size=cat[0];color=cat[1];other=cat[2]
+	
+	*it also works for multiple values
+	>>> size, color, other = 'skinny', 'black', 'quiet'
+	
+	*swapping variable:
+	>>> a = 'aaa'
+	>>> b = 'bbb'
+	>>> a, b = b, a # a=b;b=a;
+
+- Method: is pretty much like a Function, but it is called after the variable/object
+	>>> spam = ['cat','rat','bat']
+	>>> spam.index('cat') # returns 0 
+	>>> spam.append('dog') # add value to the end of the list
+	>>> spam.insert(1,'human') # add value at the given index
+	>>> spam.remove('human') 
+	*methods may not return values, instead it returns None, as they are supposed to modify a object in place, so this 'spam = spam.append(value)' would result in spam receiving None, in other words the spam list would be erased.		
+		
+	>>> spam.sort()
+	>>> spam.sort(reverse=True) 
+	*you cannot sort a mixed list
+	*sort() use ASCII to sort values. It results in Capitals comming first than lower cases. For example, "a,z,Z,A" would be sorted like "A,Z,a,z". To have a trully alphabetical do as follow:
+	>>> ['a','z','Z','A'].sort(key=str.lower) # returnin A,a,Z,z
+	
+- Mutable and immutable data types: 
+	*Very important to notice: 
+	***variables dont contain list per se, they just contain references to thue list in the memory
+	>>> spam = [1,2,3]
+	>>> bacon = spam
+	>>> bacan[0] = 'a' # if we list bacan or spam the result will be 'a',2,3	
+	>>> spam
+	>>> 'a',2,3
+	
+	*Mutable values are storaged in memory, its reference is inside the variable, like lists
+	*immutable values are storage within the variable like strings, they can be modified "in place" only by bein replaced for a new value:
+	*list vs string (mutable vs immutable)
+	>>> spam = [0,2,3]
+	>>> spam[0] = 1
+	>>> spam
+	>>> 1,2,3
+	>>> bacon = 'abc'
+	>>> bacon[2]
+	>>> c
+	>>> bacon[2] = 'd'
+	>>> TypeError: 'str' object does not support item assignment
+	***if you really need to copy the entire content of a list into a new list, you need to:
+	'import copy' and use 'copy.deepcopy(spam)' to have a complete duplicated list
+	
+	**Python does this 'reference' work for better computing performance.
+	
+- Dictionaries:
+	variable = ['key': 'value', ...]
+	variable['key']
+	*order does not matter for dictionaries:
+		{'age': 30, 'name': 'john'} == {'name': 'john', 'age': 30}
+		True
+		*while the same is false in a list:
+		[30,'john'] == ['john',30]
+		False
+			
+	*looking for a key in the dictionary
+		>>> 'size' in myDictionary - True
+		>>> 'xyz' not in myDictionary - True
+	*dictionaries are mutables like lists, they host the reference to values
+	*returning lists from dictionaries with methods:
+		>>> myCat = {'size': 'fat', 'color': 'black'}
+		>>> list(myCat.keys())
+		>>> ['size','color']
+		>>> list(myCat.values())
+		>>> ['fat','black']
+		>>> list(myCat.itens())
+		>>> 
+	*reading values from a dictionary w/ a for
+		>>> for v in spam.values():
+			print(v)
+	*getting both keys and values w/ for
+		>>> for k, v spam.items():
+			print(k,v)
+
+- Tuples: similar to 'lists', however they are immutable, they use parenthesis () instead of breakts []
+		*in other words, lists store references, while tuples store the values
+		
+- Multiline String: use 3 single quotes or double quotes to function like \n
+		>>> print('''This
+			  is a Test
+			  for multiline
+			  string'''
+			  
+- raw String: are used to function like \char by adding a r before the first quote:
+		>>> print(r'they aren't here...')
+		>>> they aren't here...
+		
+- Right() and Left() in Python: there is no such bulti-in function, however you can active the same result by:
+		>>> 'hello'[:3]
+		>>> 'hel' 
+		>>> 'hello'[-3:]
+		>>> 'llo'
+	 
+	 - center():
+	 	>>> 'hello'.center(11,'-')
+		'---hello---' 
+	- ljust():
+		>>> 'hello'.ljust(10)
+		'hello     '
+	- rjust():	
+		>>> 'hello'.rjust(10)
+		'     hello'
+		
+- String formatting: 
+	*placeholder:
+	>>> 'Hello %s, this is a %s for string formatting using %s' %('isma','command','placeholders')
+	'Hello isma, this is a command for string formatting using placeholders'
+
+- REGULAR EXPRESSION
+	- regex is a time savior when it comes to text data processing.
+	- regex use backslashs '\', so it is better to user raw string to avoid confusion w excessive \
+	- import re # to import regular expression library/module
+	- using it:
+	>>> impor re
+	>>> message = 'call me 455-555-8888 tomorrow, or at 455-555-9999'
+	>>> phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d') #american phone patter 555-555-9999
+	>>> phoneList = phoneNumRegex.findall(message)
+	>>> print(phoneList)
+	['455-555-8888','455-555-9999'] 
+	
+	- regex return 'match objects' which contain useful information of the match resulting from 		*the search and allow to create groups :
+	*create groups using () around the pattern: 
+	>>>phonePattern = re.compile(r'(\d\d\d)-(\d\d\d-\d\d\d\d)')
+	*the result for above would be:
+	>>> phonePattern.search(message).group(1)
+	'455'
+	>>> phonePattern.search(message).group(0)
+	'455-555-8888'
+	>>> phonePattern.search(message).group(2)
+	'555-8888'
+	*if you need to find literal () the patter will need \ but will not be treated as a group:
+		r'\(\d\d\d\) \d\d\d-\d\d\d\d' #to a find a phonenum like (455) 555-0099
+	*to add groud add more () around it, but without \:
+		r'(\(\d\d\d\)) (\d\d\d-\d\d\d\d)' #resulting in 3 groups, 1st and 2nd () and the whole 
+
+	- search multiple options w/ pipe '|'
+		r'batman|batmobile' 
+	
+	- sth that appears 0 or 1 time: '(sth)?' 
+		r'Bat(wo)?man'
+		*will return 'Batman' or 'Batwoman'
+	- sth that occurs 1 or more times: '(sth)+'
+		r'Bat(wo)+man'
+		*will be able to find 'wo' if it repeats like 'wowowo'
+	- sth that occurs 0 or more times: '(sth)*'
+		r'Bat(wo)*man'
+	- sth that occurs specific amount of times: '(sth){x}'
+		r'(Ha){3}'
+		*in 'HaHaHaHaHa' will return 'HaHaHa'
+	- sth that occurs in a range of times (greed pattern): '(sth){x,y}'
+		r'(Ha){3,5}'
+		*in 'HaHaHaHaHa' will return 'HaHaHaHaHa'
+		*the Greedy pattern will reach the maximum number in the range
+	- sth that occurs in a range of times (nongreedy patern): '(stg){x,y}?'
+		r'(Ha){3,5}?'
+		*in 'HaHaHaHaHa' will return 'HaHaHa'
+		*the Nongreedy pattern will return the smallest number in the range 
+	
+	- Shorthand Character Classes:
+		- digits from 0 to 9: r'\d' = r'0|1|2|3|4|5|6|7|8|9'
+		- not numeric digits from 0 to 9: r'\D' *capital D
+		- any letter, numeric, or underscore: r'\w' *includes ponctuation
+		- not letter, numeric, or underscore: r'\W' 
+		- space, tab, or newline: r'\s'
+		- not space, tab, or newline: r'\S'
+		
+	- Make you own Character Classes: definie attributes between [ ] 
+		-   vowels: r'[aeiou]' = r'(a|e|i|o|u)' *case sensitive, to add upper: r'[aeiouAEIOU]'
+		- any lower case alphabetic = r'[a-z]' *along w/ upper case: r'[a-zA-z]'
+		
+		eg.: 
+		- finding words containing vowels separated by space or ,:
+			r'(\w+[aeiouAEIOU]+\w*)\s?'
+		- finding words containing D and not containing D
+		      	D : 	r'\s(d\w+),?'
+		      	NOT D : r'\s([^d]\w+),?')
+		**for case insensitive: re.compile(r'[aeiou]', re.IGNORECASE)s	
+			
+	- Match pattern in de begin or end:
+		- begin: ^ : r'^Hello' 
+		*in 'Hello there!' will return 'Hello' match
+		*in 'He said "Hello"' won't return a match
+		- end: $ : r'Hello$'
+		*in 'Hello there!' won't return a match
+		*in 'He said "Hello"' will return 'Hello' match
+		- must begin w/ a word: r'^\w+'
+		- must end in a digit: r'\d$'
+		- must begin w/ a word and end w/ a digit
+			r'^\w+.*\d$'  *dot '.' here works like a wildcard and '*' for multiple
+			*in 'The number is 9' will find exactly the same
+			*in 'The number is nine' won't have a match
+
+	- Dot works as a wildcard, it represents any single character
+		- to find a single char followed by 'at':
+		>>> phrase = 'the fat cat sat in the hat on the flat mat'
+		>>> pattern = re.compile(r'.at')
+		>>> pattern.findall(phrase)
+		['fat', 'cat', 'sat', 'hat', 'lat', 'mat']
+		- to find one or two chars preceding 'at':
+		>>> pattern = re.compile(r'\s(.{1,2}at)')
+		>>> pattern.findall(phrase)
+		['fat', 'cat', 'sat', 'hat', 'flat', 'mat'] 
+		- other example:
+		>>> phrase2 = 'first name: ismael last name: marques'
+		>>> pattern = re.compile(r'first name: (.*) last name: (.*)')
+		>>> pattern.findall(phrase2)
+		[('ismael', 'marques')]
+		- for nongreedy use ?:
+		>>> dotgreedy = re.compile(r'<(.*)>')
+		>>> dotgreedy.findall('<To serve humans> for dinner.>')
+		['To serve humans> for dinner.']
+		>>> dotnongreedy = re.compile(r'<(.*?)>')
+		>>> dotnongreedy.findall('<To serve humans> for dinner.>')
+		['To serve humans']
+	**DOT is for every chars, but does not incluse newline \n 
+	to force it to include newline use the parameter: re.compile(r'.*', re.DOTALL)	
+	
+	- Replace / substite: 
+		- simple:define a pattern and run: 
+			re.sub('new word',textString)
+			*sub() will replace words over the result of the pattern
+		- using groups: replace based on the grouds resulting from pattern
+			re.sub(r'new \1****',textString)  
+			*\1 represents the group to be used in replacement
+		- example finding and replacing pw:
+		>>> mypws = 'pw base patterns: base1: tgmrks base2: stgadmin'
+	>>> pwre = re.compile(r'base\d:\s(\w)\w+') 
+	>>> pwre.findall(mypws)
+	['t', 's']
+	>>> pwre.sub(r'base: \1*****',mypws)
+	'pw base patterns: base: t***** base: s*****'
+	
+	- Verbose mode: helps the regex to be more readable:
+		>>> re.compile(r'''
+		    \d\d\d	# area code
+		    -		# first dash
+		    \d\d\d	# first 3 digits
+		    -		# second dash
+		    \d\d\d\d	# last 4 digits
+		    ''', re.VERBOSE)
+			
+NOTES:
+	- .search() returns a Match Object
+	- .findall() returns a list of Strings or Tuples of Strings
+	- if the search cannot find a pattern it will return 'None'
+	- digits: '\x' : r'\d\d\d-\d\d\d-\d\d\d\d'
+	- groups: '()' : r'(\d\d\d)-(\d\d\d-\d\d\d\d)'
+	- multiple values: '|' : r'batman|batmobile' 
+	- possible variation: '()?' : r'Bat(wo)?man'
+	- to use a literal: '\+' : '\+\*?'
+	- sth 0 or 1 times: '()?' : '(Ha)?'
+	- sth 1 or more times: '()+' : '(Ha)+'
+	- sth 0 or more tiems: '()*' : '(Ha)*'
+	- sth X times: '(){x}' : '(Ha){3}'
+	- sth in a greedy range: '(){x,y}' : '(Ha){3,5}' *return max
+	- sth in a nongreedy range: '(){x,y}?' : '(Ha){3,5}?' *return min
+	   
+- Files
+	- import os; 
+	>>> os.path.join('folder1','folder2','file.name') *return the pathname accordinly to the OS
+	
+	- Reading
+	>>> file = open(r'/absolute/path/file.txt')
+	>>> file.read()
+	*prints out its content
+	>>> file.close()
+	...
+	>>> file.readlines() *return a list
+	
+	- writing
+	>>> file = open('/absolute/path/file.txt', 'w') 
+	*open file in write mode, which will overwrite the content
+	>>> file = open('/absolute/path/file.txt', 'a')
+	*open file in append mode, to add new content to end 
+	***for both 'w' and 'a' modes, the file will be created if it does not already exist
+	
+	- import shelve; *to manage non text file 
+	>>> shelfFile = shelve.open(r'/absolute/path/file.txt')
+	>>> shelfFile['cats'] = ['Zophie', 'Pooka', 'Simon']
+	>>> shefFile.close()
+	*shelve files work similar to dictionaries
+	
+	- copying and moving
+	>>> import shutil
+	>>> shutil.copy('/origin/path/file', '/destiny/path/file') *allows renaming the destiny
+	>>> shutil.copytree('/origin','/destiny/backup') *copy entire folder tree
+	>>> shutil.move('origin', 'destiny') *cut and paste *could be used for rename
+	
+	- deleting
+	>>> os.unlink('...')
+	>>> os.rmdir('...')
+	>>> shutil.rmtree()
+	***be careful with deletion functions, they are permanent, there is not safeguard for deletions
+	
+	- os.walk() : walk into path provided
+	>>> os.walk(r'/home/isma/dev/')
+	*returns folder name, sub folders, and files for each iteration	
+	
+- Debugging
+	- use try/excep to treat exception errors 
+	>>> try:
+	>>>	returnt sth
+	    except someException :
+	 	do sth
+	
+	- raise your on Exception
+	>>> raise Exceptio('message')
+	
+	- write the exception into a log file
+	>>> import traceback
+	>>> try:
+		raise Exception('This is a error message')
+	    except:
+	    	errorFile = open('error.log', 'a')
+	    	errotFile.write(traceback.format_exc())
+	    	errorFile.close() 
+		
+	- assert error: another kind of exception
+	>>> assert False, 'This is a massage error.' # activates when False
+	**with 'assert' you are not required to test the code if try/except, it simply raise if it fail
+	***assertion is for programmer errors, while exception is for user errors
+	
+	user errors = Expections
+	programmer errors = Assertions
+	
+	- logging:
+	>>> import logging
+	>>> logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+	>>> # logging.disable(logging.CRITICAL) # deactivate all logging from critical to lower levels
+	>>> logging.debug('logging message...') 
+	
+	- log levels: debug (lowest), info, warning, error, critical (highest) 
+				*following this order of severity	
+	
+	- save log in file:
+	>>> logging.basicConfig(fileName='myFilePathName.log', ...)
+	
+- web browser
+	>>> import webbrowser
+	>>> webbroser.open('https://google.com')
+- Downloading:
+	$ pip3 install requests
+	>>> import requests
+	>>> req = requests.get('https://automatetheboringstuff.com/files/rj.txt')
+	>>> req.status_code # return 200 means successful transaction
+	*the content grabed/downloaded are kept within the req var above
+	**using 'raise_for_status()' wont print when successful, and will raise an Exception when unsuccessfull
+	>>> req.raise_status_code()
+	***to write the downloaded text into a file use the write-binary mode to copy unicode coding
+	>>> downFile = open('myfile.txt', 'wb')
+	***to write the webpage 
+	>>> for chunk in req.iter_content(100000): #write data by bytes (100k per iteration this case)
+		downFile.write(chunk)
+	>>> downFile.close()
+	
+- web scraping
+	*use BeautifulSoup4 to parse text HTLM to soup object to better manipulate elements 
+	$ pip3 install beautifulsoup4
+	>>> import bs4
+	>>> req = request.get(...)
+	>>> soup = bs4.BeautifulSoup(req.text, 'html.parser')
+	>>> elements = soup.select('CSS Selector here')
+	>>> print(elements[0].text.strip())
+	
+- Selenium: to control web browser via python commands
+	$ pip3 install selenium
+	>>> from selenium import webdriver
+	>>> browser = webdrive.Firefox()
+	*to open a 
+	>>> browser.get('https://automatetheboringstuff.com')
+	>>> element = browser.find_element_by_css_selector('.main > div:nth-child(1) > ul:nth-child(20) > li:nth-child(1) > a:nth-child(1)')
+	*finding a element to click
+	>>> element
+	<selenium.webdriver.firefox.webelement.FirefoxWebElement (session="72c066cc-9d96-449a-b982-4cf92ac23c9e", element="a507827a-915f-41d7-84a9-c6c18b6657ef")>
+	>>> element.click()
+	>>> browser.quit()
+	**if selenium fail to launch a browser for geckodriver, follow the installation bash in its github
+	
+- Excel
+	$ pip3 install openpyxl
+	>>> import openpyxl
+	>>> # Reading:
+	>>> workbook = openpyxl.load_workbook('/path/spreadsheet.xlsx')
+	>>> sheet1 = workbook[workbook.sheetnames[0]] # grabing the first sheet
+	>>> cellA1 = sheet1['A1'].value
+	>>> cellB2 = sheet.cell(row=2, columns=2).value
+	>>> # editing:
+	>>> sheet1['B3'] = 42 # set cell value
+	>>> workbook.create_sheet() # simply create a new/next sheet
+	>>> workbook.create_sheet(index=0, title='1st sheet') # new sheet at the begining w/ title 
+	>>> workbook['Sheet1'].title = 'new title' # change sheet title
+	>>> workbook.save('newSpredsheet') # create or save a new workbook/spredsheet
+
+- Word : 
+	$ pip3 install python-docx
+	>>> import docs
+	>>> d = doc.Document('path/doc.docx')
+	...
+
+- Send email with SMTP (simple mail transfer protocol) for python	
+	- SMTP server:
+	Gmail	smtp.gmail.com		:587
+	Outlook smtp-mail.outlook.com	:587
+	>>> import smtplib
+	>>> conn = smtplib.SMTP('smtp.HOST.com', PORT-NUM)
+	>>> conn.ehlo()
+	>>> conn.starttls() # encryt pw
+	>>> conn.login('user@host.com', 'password')
+	>>> conn.sendmail('target@host', 'recepit@host', 'Subject: So Long...\n\nThanks for all the fix\n\nRegards') # the entire email in a string
+	>>> conn.quit()	
+
+- Read email with IMAP Server for python
+	$ pip3 install imapclient
+	>>> import imapclient
+	>>> conn = imapclient('imap.host.com', ssl=True)
+	>>> conn.login('user@host', 'password')
+	>>> conn.select_folder('INBOX', readonly=True)
+	>>> uids = conn.search(['SINCE 10-May-2020'])
+	>>> raw_message = conn.featch([UIDnum], 'BODY[]', 'FLAGS')
+	$ pip3 install pyzmail
+	>>> import pyzmail
+	>>> message = pyzmail.PyzMessage.factory(raw_message[UIDnum]['BODY[]'])
+	>>> message.get_subject()
+	>>> message.get_address('from')
+	>>> message.text_part.get_payload().decode('UTF-8')
+	...modifying:
+	>>> conn.select_folder('INBOX', readonly=False)
+	>>> uids = conn.seatch(['ON 15-May-2020'])
+	>>> conn.delete_messges(UIDsnum)
+	...
+	
+- Mouse & Keyboard control
+	- mouse controlling:
+	$ pip install pyautogui
+	>>> import pyautogui
+	>>> width, height = pyautogui.size() #*pyautogui functions accept tuples, breaking into vars is not required
+	>>> pyautogui.position() #show cursor current position
+	>>> pyautogui.moveTo(x, y) # instantly move to xy position
+	>>> pyautogui.moveTo(x, y, duration=1.0) # in seconds, determine the movement duration
+	>>> pyautogui.moveRel(px_X, px_Y) #instant move xy pixels relative to current cursor position 
+	>>> pyautogui.moveRel(200, -100, duration=1.5) #move relative pixels w/ duration
+	>>> pyautogui.click(x, y) # x, y are optional
+	>>> pyautogui.rightClick(x, y)
+	>>> pyautogui.middleClick(x, y)
+	>>> pyautogui.doubleClick(x, y)
+	>>> pyautogui.displayMousePosition() # display realtime mouse position
+	Press Ctrl-C to quit.
+	X:  886 Y:  709 RGB: ( 78, 154,   6)
+
+	- keyboard controlling:
+	>>> pyautogui.typewrite('hello world') # instantly type
+	>>> pyautogui.typewrite('...', interval=0.2) # interval duration between each key pressing
+	>>> pyautogui.KEYBOARD_KEYS #it has some keywords you can use for special characters 
+	>>> pyautogui.press('f11') #single key pressing
+	>>> pyautogui.hotkey('ctrl', 'c') #to combine keys
+
+	- mouse and keyboard combined:
+	>>> pyautogui.moveTo(300,500,duration=1);pyautogui.click();pyautogui.typewrite('ls -la',interval=0.2);pyautogui.typewrite(['return'])
+
+	- screenshot 
+	# apt-get install scrot
+	>>> pyautogui.screenshot() #returns a PIL image object
+	>>> pyautogui.screenshot('/home/img/img.png') # our you can save it to a file
+	>>> pyautogui.locateOnScreen('/path/compare.png') #tries to find a image within the screenshot and returns a tuple with XY position and WH of the object in case it succeds 
+	>>> pyautogui.locateCenterOnScreen('/path/compare.png') # it returns only the XY in tuple
+	**this function is precise and expensive for processing because it tries to find the exactly image pixel by pixel, however you can make it less costly by finding slightly similar images instead
+	
+	***when pyautogui executes a task you cannot interfere with it, hence you cant lose control over you computer with you create a loop or a deap spot where the program cant exit. For this reason, pyautogui has a FAILSAFE Exception, whenever stuck you can drag cursor to the 0x0 coordinates, then it will raise an exception cause the brake.  
+
+
+
+	
+	
+TODO: check b'...' Bytes and other kinds of strings
+'MENBER: multiple assignement variables 
